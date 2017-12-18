@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start":"set NODE_ENV=production&&node ./bin/www",
+    "pm2": "pm2 start bin/www ",
+    "run":"set NODE_ENV=development&&nodemon bin/www",
+    "test": "set NODE_ENV=test&&echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "body-parser": "~1.18.2",

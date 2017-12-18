@@ -1,6 +1,6 @@
 // 实现与MySQL交互
 var mysql = require('mysql');
-var $conf = require('../conf/db-config');
+var $conf = require('../conf/config');
 var $util = require('../util/util');
 var $sql = require('./userSqlMapping');
 var jsonWrite = require('../util/jsonWrite');
