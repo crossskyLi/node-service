@@ -2,7 +2,7 @@
 // var mysql = require('mysql');
 // var $conf = require('../conf/config');
 // var $util = require('../lib/util');
-var mysqlDao = require('../lib/common/mysql_pool');
+var mysqlDao = require('../../lib/common/mysql_pool');
 var $sql = require('./user_sql_mapping');
 // var jsonWrite = require('../lib/jsonWrite');
 // // 使用连接池 ,提升性能

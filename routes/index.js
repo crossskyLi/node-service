@@ -1,5 +1,5 @@
 var express = require('express');
-var userCtrl = require('../ctrls/userCtrl');
+var userCtrl = require('../ctrls/user/userCtrl');
 var router = express.Router();
 
 
