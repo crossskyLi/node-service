@@ -1,9 +1,9 @@
 var express = require('express');
+var userCtrl = require('../ctrls/userCtrl');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+
+//用户管理
+router.post('/users/addUser', userCtrl.addUser);
 
 module.exports = router;

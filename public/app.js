@@ -9,8 +9,7 @@ var data = {
     index:{},
     addUser:{
         name:'1',
-        age:'2',
-        id:1
+        age:'2'
     }
 };
 
