@@ -1,9 +1,12 @@
 var app = require('./myHttp');
-
+// 路径
 var path = {
-    addUser:'/addUser'
+    index:'/',
+    addUser:'/users/addUser'
 };
+// 数据
 var data = {
+    index:{},
     addUser:{
         name:'1',
         age:'2',
@@ -11,5 +14,11 @@ var data = {
     }
 };
 
+
+// 测试连接
+// app.httpGet(path.index,data.index);
+
 // 添加用户
-app.httpGet(path.addUser,data.addUser);
+// console.log('path.addUser,data.addUser',path.addUser,data.addUser)
+app.httpPost(path.addUser,data.addUser);
+

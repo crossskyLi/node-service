@@ -1,6 +1,7 @@
 var config = {
     env: 'test',// 环境名称
     port: '3600',
+    requestIp:'',// 请求测试服的ip,现在暂时是本地
     mysql: {
         host: '127.0.0.1',
         user: 'root', // mysql 用户密码

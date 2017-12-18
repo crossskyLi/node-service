@@ -4,8 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var index = require('./routes/index');
+var compression = require('compression');
+// var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
@@ -21,11 +21,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//Gzip压缩
+app.use(compression());
 
-app.use('/', index);
+app.use(bodyParser.urlencoded({
+    limit: '50mb',
+    extended: true,
+    parameterLimit: 50000
+}));
+app.use(bodyParser.json({limit: '50mb'}));
+
+// app.use('/', index);
 app.use('/users', users);
-process.env.PORT = 3800;
-// console.log('process.env.PORT',)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -6,7 +6,8 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 // 添加用户
-router.get('/addUser', function(req, res, next) {
+router.post('/addUser', function(req, res, next) {
+    // console.log('addUser req',req);
   userDao.add(req,res,next);
 });
 // 查询所有

@@ -1,5 +1,5 @@
 var user = {
-    insert :'INSERT INTO user(id ,name,age) VALUES(0,?,?)',
+    insert :'INSERT INTO user(id ,name,age) VALUES(?,?,?)',
     update:'update user set name=?,age = ? where id = ?',
     delete:'delete from user where id = ?',
     queryById:'select * from user where id = ?',

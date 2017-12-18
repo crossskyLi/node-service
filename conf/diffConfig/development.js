@@ -1,6 +1,7 @@
 var config = {
     env: 'development',// 环境名称
     port: '3400',
+    requestIp:'192.168.0.66', // 本地请求的ip
     mysql: {
         host: '127.0.0.1',
         user: 'root', // mysql 用户密码
