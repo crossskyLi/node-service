@@ -8,4 +8,4 @@ var jsonWrite = function (res, ret) {
         res.json(ret);
     }
 };
-module.exports = jsonWrite
+module.exports = jsonWrite;
