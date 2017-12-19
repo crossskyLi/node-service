@@ -8,7 +8,7 @@ var path = {
 var data = {
     index:{},
     addUser:{
-        name:'1',
+        userName:'85651',
         age:'2'
     }
 };

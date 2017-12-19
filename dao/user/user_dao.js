@@ -1,18 +1,18 @@
-// 实现与MySQL交互
-// var mysql = require('mysql');
-// var $conf = require('../conf/config');
-// var $util = require('../lib/util');
+// 使用连接池 ,提升性能
 var mysqlDao = require('../../lib/common/mysql_pool');
+// sql语句
 var $sql = require('./user_sql_mapping');
-// var jsonWrite = require('../lib/jsonWrite');
-// // 使用连接池 ,提升性能
-// var pool = mysql.createPool($util.extend({}, $conf.mysql));
 
-function addUserSql(param, callback) {
-    // 处理
+// 查用户名重复
+function isUserExist(insertData, callback) {
+    var isUserExistSql = $sql.user.isUserExistSql;
+    mysqlDao.executeObject(isUserExistSql, insertData, callback)
+}
 
-    // var sql = 'INSERT INTO user(name,age) VALUES("1",1)'
-    mysqlDao.executeUpdate($sql.user.insert, param, callback)
+// 添加用户
+function addUserSql(insertData, callback) {
+    var insertUserSql = $sql.user.insert;
+    mysqlDao.executeUpdate(insertUserSql, insertData, callback)
 }
 
 function queryAllUserSql(req, res, next) {
@@ -24,5 +24,6 @@ function queryAllUserSql(req, res, next) {
 
 module.exports = {
     addUserSql: addUserSql,
+    isUserExist: isUserExist,
     queryAllUserSql: queryAllUserSql
 };

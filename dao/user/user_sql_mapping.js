@@ -1,9 +1,10 @@
 var user = {
-    insert :'INSERT INTO user(name,age) VALUES("1",1)',
+    insert :'INSERT INTO user(username,age) VALUES(:userName,:age)',
     update:'update user set name=?,age = ? where id = ?',
     delete:'delete from user where id = ?',
     queryById:'select * from user where id = ?',
-    queryAll :'select * from user'
+    queryAll :'select * from user',
+    isUserExistSql:'select id from user where username = :userName'
 };
 
 module.exports = {

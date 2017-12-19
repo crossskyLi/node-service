@@ -39,9 +39,6 @@ app.all('*', function(req, res, next) {
 });
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-
 app.use(bodyParser.json({limit: '50mb'}));
 
 app.use('/', webRoutes);
