@@ -1,18 +1,23 @@
 var http = require('http');
 var querystring = require('querystring');
-var config = require('../conf/config.js');
-// var port = '9000';  //系统后台
-// var port = 3700;  //当当
-// var port = 3600;  //weixin
-// var port =3300; //后台管理 
-// var port =3200; //本地教师端 
-var port = config.port; //本地学生端
-var ip = config.requestIp;//本地IP
+var config = require('./conf/config');
+var ipData = config.dev;// 开发环境配置
+// var ipData = config.test;// 测试环境配置
+// var ipData = config.prod;// 生产环境配置
+
+var ip = ipData.requestIp;// IP
+var port = ipData.port; // 端口
 // var ip = '120.76.25.120';//系统
 // var ip = '116.62.8.201';//上线IP
 // var ip = '121.199.24.124';//测试IP
 // var ip = 'student.api.youyue.group';
 // var ip = 'teacher.api.youyue.group';
+// var port = '9000';  //系统后台
+// var port = 3700;  //当当
+// var port = 3600;  //weixin
+// var port =3300; //后台管理
+// var port =3200; //本地教师端
+// post
 function httpPost(path, data) {
     //json转换为字符串
     data = querystring.stringify(data);
@@ -42,9 +47,7 @@ function httpPost(path, data) {
     req.write(data);
     req.end();
 }
-
-var i = 0;
-
+// get
 function httpGet(path, data) {
 
     data = querystring.stringify(data);
@@ -77,44 +80,44 @@ function httpGet(path, data) {
     });
 }
 
-function addStudent(path, data) {
-    //json转换为字符串
-    data = querystring.stringify(data);
-    console.log(data);
-    var options = {
-        host: '192.168.0.55',
-        port: 8080,
-        path: path,
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Content-Length': Buffer.byteLength(data)
-        }
-    };
-
-    var req = http.request(options, function (res) {
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            console.log("return: " + chunk);
-        });
-        res.on('end', function (chunk) {
-            console.log("body: " + chunk);
-        });
-        req.on('error', function (err) {
-            console.log("err:" + err);
-        });
-    });
-    req.write(data);
-    req.end(function (err, ret) {
-        console.log('end')
-    });
-}
+// function addStudent(path, data) {
+//     //json转换为字符串
+//     data = querystring.stringify(data);
+//     console.log(data);
+//     var options = {
+//         host: '192.168.0.55',
+//         port: 8080,
+//         path: path,
+//         method: 'post',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded',
+//             'Content-Length': Buffer.byteLength(data)
+//         }
+//     };
+//
+//     var req = http.request(options, function (res) {
+//         res.setEncoding('utf8');
+//         res.on('data', function (chunk) {
+//             console.log("return: " + chunk);
+//         });
+//         res.on('end', function (chunk) {
+//             console.log("body: " + chunk);
+//         });
+//         req.on('error', function (err) {
+//             console.log("err:" + err);
+//         });
+//     });
+//     req.write(data);
+//     req.end(function (err, ret) {
+//         console.log('end')
+//     });
+// }
 
 
 module.exports = {
     httpPost: httpPost,
     httpGet: httpGet,
-    addStudent: addStudent
+    // addStudent: addStudent
 };
 
 
