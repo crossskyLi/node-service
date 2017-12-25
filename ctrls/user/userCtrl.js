@@ -10,9 +10,16 @@ function addUser(req, res, next) {
     var params = {
         userName: reqBody.userName || '',
         age: reqBody.age,
-        password:reqBody.password
+        password: reqBody.password
     };
-
+    if (!params.userName) {
+        res.send(new RetJson(errCode.ERROR, errCode.USERNAME_IS_NULL));
+        return;
+    }
+    if (!params.userName) {
+        res.send(new RetJson(errCode.ERROR, errCode.USERNAME_IS_NULL));
+        return;
+    }
     function isUserExist(callback) {
         userDao.isUserExist(params, callback);
     }

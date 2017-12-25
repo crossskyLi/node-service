@@ -14,6 +14,7 @@ var errCode = {
     'TOKEN_IS_ERROR': 'token信息错误',
 
     'USERNAME_IS_EXIST': '账号已经被注册',
+    'USERNAME_IS_NULL':'没有账号名字',
     'PHONE_NUMBER_INPUT_ERROR': '手机号码输入错误',
     'LOGIN_INPUT_ERROR': '登录输入格式不对',
     'LOGIN_USER_NOT_EXIST': '用户名不存在',
