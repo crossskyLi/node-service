@@ -41,7 +41,7 @@ function httpPost(path, data,callback) {
             callback( chunk);
         });
         res.on('end', function (chunk) {
-            callback( chunk);
+            callback( chunk ,'结束');
         })
     });
     req.write(data);

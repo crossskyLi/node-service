@@ -14,7 +14,7 @@ function addUser(params, callback) {
     var sql = $sql.user.insert;
     mysqlDao.executeUpdate(sql, params, callback)
 }
-
+// 查询要更新的用户是否存在
 function isUpdateUserExist(params, callback) {
     var sql = $sql.user.isUpdateUserExistSql;
     mysqlDao.executeObject(sql,params,callback);
