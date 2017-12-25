@@ -18,7 +18,7 @@ var port = ipData.port; // 端口
 // var port =3300; //后台管理
 // var port =3200; //本地教师端
 // post
-function httpPost(path, data) {
+function httpPost(path, data,callback) {
     //json转换为字符串
     data = querystring.stringify(data);
     // console.log(data);
@@ -38,17 +38,17 @@ function httpPost(path, data) {
     var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
-            console.log("body: " + chunk);
+            callback( chunk);
         });
         res.on('end', function (chunk) {
-            console.log("body: " + chunk);
+            callback( chunk);
         })
     });
     req.write(data);
     req.end();
 }
 // get
-function httpGet(path, data) {
+function httpGet(path, data,callback) {
 
     data = querystring.stringify(data);
     path = path + '?' + data;
@@ -68,9 +68,11 @@ function httpGet(path, data) {
         var resData = "";
         res.on("data", function (data) {
             resData += data;
+            callback( data);
             // console.log('data',data);
         });
-        res.on("end", function () {
+        res.on("end", function (data) {
+            callback( data);
             // callback(null,JSON.parse(resData));
             // console.log(resData)
             // console.log('--',JSON.parse(resData));

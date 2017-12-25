@@ -4,26 +4,30 @@ var mysqlDao = require('../../lib/common/mysql_pool');
 var $sql = require('./user_sql_mapping');
 
 // 查用户名重复
-function isUserExist(insertData, callback) {
-    var isUserExistSql = $sql.user.isUserExistSql;
-    mysqlDao.executeObject(isUserExistSql, insertData, callback)
+function isUserExist(params, callback) {
+    var sql = $sql.user.isUserExistSql;
+    mysqlDao.executeObject(sql, params, callback)
 }
 
 // 添加用户
-function addUserSql(insertData, callback) {
-    var insertUserSql = $sql.user.insert;
-    mysqlDao.executeUpdate(insertUserSql, insertData, callback)
+function addUser(params, callback) {
+    var sql = $sql.user.insert;
+    mysqlDao.executeUpdate(sql, params, callback)
 }
 
-function queryAllUserSql(req, res, next) {
-    pool.getConnection(function (err, connection) {
-        var param = req.query || req.params;
-
-    })
+function isUpdateUserExist(params, callback) {
+    var sql = $sql.user.isUpdateUserExistSql;
+    mysqlDao.executeObject(sql,params,callback);
+}
+// 更新用户
+function updateUser(params, callback) {
+    var sql = $sql.user.update;
+    mysqlDao.executeUpdate(sql,params,callback)
 }
 
 module.exports = {
-    addUserSql: addUserSql,
+    addUser: addUser,
     isUserExist: isUserExist,
-    queryAllUserSql: queryAllUserSql
+    isUpdateUserExist: isUpdateUserExist,
+    updateUser:updateUser,
 };
