@@ -3,32 +3,62 @@ var app = require('./myHttp');
 var path = {
     index: '/',
     addUser: '/users/addUser',
-    updateUser: '/users/updateUser'
+    updateUser: '/users/updateUser',
+    deleteUser: '/users/deleteUser',
+    getUserProfile: '/users/getUserProfile',
+    getUserList: '/users/getUserList'
 };
 // 数据
 var data = {
     index: {},
     //添加用户
     addUser: {
-        userName: '85651',
+        userName: new Date().getTime(),
         age: '2',
         password: '123'
     },
     // 更新用户
     updateUser: {
-        userId: 20,
+        userId: 21,
         age: '123',
         password: '123'
+    },
+    deleteUser: {
+        userId: 22
+    },
+    getUserProfile: {
+        userId: 19
+    },
+    getUserList: {
+        lowAge: 10,
+        maxAge: 60,
+        searchName: '15',
+        pageSize: 10,
+        currentPage: 3
     }
 };
+// 路由
+var url = '';
+var reqData = {}; // 新增用户
+// 新增用户
+// url = path.addUser;
+// reqData = data.addUser;
 
+// 更新用户
+// url = path.updateUser;
+// reqData = data.updateUser;
 
-// 测试连接
-// app.httpGet(path.index,data.index);
+//删除用户
+// url = path.deleteUser;
+// reqData = data.deleteUser;
 
-// 添加用户
-// console.log('path.addUser,data.addUser',path.addUser,data.addUser)
-app.httpPost(path.updateUser, data.updateUser, function (chunk, endTip) {
+// 获取用户信息
+// url = path.getUserProfile;
+// reqData = data.getUserProfile;
+// 获取用户列表
+url = path.getUserList;
+reqData = data.getUserList;
+app.httpPost(url, reqData, function (chunk, endTip) {
 
     if (endTip) {
         console.log('请求结束', endTip, chunk);
@@ -37,4 +67,13 @@ app.httpPost(path.updateUser, data.updateUser, function (chunk, endTip) {
     console.log('请求结束', chunk);
 
 });
+
+
+
+
+
+
+
+
+
 

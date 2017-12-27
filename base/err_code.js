@@ -58,6 +58,7 @@ var errCode = {
     'BOOK_NAME_IS_EMPTY': '书名不能为空',
     'USERNAME_IS_EMPTY': '用户名不能为空',
     'PASSWORD_IS_EMPTY': '密码不能为空',
+    'PASSWORD_FORMAT_IS_WRONG': '密码格式错误',
     'CATEGORY_IS_EMPTY': '类别不能为空',
     'APPNAME_IS_EMPTY': '应用名不能为空',
     'LESSON_IS_EMPTY': '课程名不能为空',
