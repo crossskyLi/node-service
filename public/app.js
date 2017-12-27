@@ -30,11 +30,11 @@ var data = {
         userId: 19
     },
     getUserList: {
-        lowAge: 10,
-        maxAge: 60,
-        searchName: '15',
+        lowAge: 1, // 最小年龄
+        maxAge: 60, // 最大年龄
+        searchName: '15', // 搜索模糊查询
         pageSize: 10,
-        currentPage: 3
+        currentPage: 1
     }
 };
 // 路由

@@ -172,14 +172,13 @@ function getUserList(req, res, next) {
         offSet: offSet
     };
 
-    userDao.getUserList(params,function (err, result) {
-        if(err){
+    userDao.getUserList(params, function (err, result) {
+        if (err) {
             console.error(err);
-            res.send(new RetJson(errCode.ERROR,errCode.ERROR_MESSAGE))
+            res.send(new RetJson(errCode.ERROR, errCode.ERROR_MESSAGE));
             return;
         }
-        console.log('result.rows',result.rows);
-        res.send(new RetJson(errCode.SUCCESS,errCode.SUCCESS_MESSAGE,result))
+        res.send(new RetJson(errCode.SUCCESS, errCode.SUCCESS_MESSAGE, result));
     })
 
 }
