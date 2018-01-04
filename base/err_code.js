@@ -18,7 +18,7 @@ var errCode = {
     'PHONE_NUMBER_INPUT_ERROR': '手机号码输入错误',
     'LOGIN_INPUT_ERROR': '登录输入格式不对',
     'LOGIN_USER_NOT_EXIST': '用户名不存在',
-    'LOGIN_USER_PASSWORD_ERROR': '登录密码错误',
+    'LOGIN_USER_PASSWORD_ERROR': '账户或登录密码错误',
 
     'NAME_IS_NULL': '学生名字不能为空',
     'SCHOOLID_IS_WRONG': '学校id错误',

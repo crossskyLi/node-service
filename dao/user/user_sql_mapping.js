@@ -11,6 +11,4 @@ var user = {
     isUpdateUserExistSql: 'SELECT id FROM user WHERE id = :userId'
 };
 
-module.exports = {
-    user: user
-};
+module.exports = user;

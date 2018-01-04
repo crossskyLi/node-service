@@ -2,11 +2,16 @@ var app = require('./myHttp');
 // 路径
 var path = {
     index: '/',
+    // 登录登出
+    signIn:'/signIn',
+
+    //用户操作
     addUser: '/users/addUser',
     updateUser: '/users/updateUser',
     deleteUser: '/users/deleteUser',
     getUserProfile: '/users/getUserProfile',
     getUserList: '/users/getUserList'
+
 };
 // 数据
 var data = {
@@ -35,6 +40,10 @@ var data = {
         searchName: '15', // 搜索模糊查询
         pageSize: 10,
         currentPage: 1
+    },
+    signIn:{
+        userName:'1514354989449',
+        password:'123'
     }
 };
 // 路由
@@ -56,8 +65,11 @@ var reqData = {}; // 新增用户
 // url = path.getUserProfile;
 // reqData = data.getUserProfile;
 // 获取用户列表
-url = path.getUserList;
-reqData = data.getUserList;
+// url = path.getUserList;
+// reqData = data.getUserList;
+// 登录
+url = path.signIn;
+reqData = data.signIn;
 function request(model) {
     if(model === 'post'){
         app.httpPost(url, reqData, function (chunk, endTip) {
@@ -82,8 +94,8 @@ function request(model) {
 
     });
 }
-// request('post');
-request('get');
+request('post');
+// request('get');
 
 
 
