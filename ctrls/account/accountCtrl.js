@@ -40,6 +40,7 @@ function validatorLoginUserByUserName(req, param, callback) {
         if (!userResult) {
             callback(errCode.LOGIN_USER_NOT_EXIST)
         }
+        console.log(utility.md5('levis520.'));
         if (utility.md5(password) !== userResult.password) {
             callback(errCode.LOGIN_USER_PASSWORD_ERROR)
         }
