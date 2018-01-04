@@ -137,10 +137,6 @@ function deleteUser(req, res, next) {
             res.send(new RetJson(errCode.ERROR, errCode.ERROR_MESSAGE));
             return;
         }
-        console.log(result instanceof Array)
-        for(var key in result){
-            console.log(key,result[key])
-        }
         res.send(new RetJson(errCode.SUCCESS, errCode.SUCCESS_MESSAGE, result))
     });
 
@@ -187,8 +183,7 @@ function getUserList(req, res, next) {
 
     var reqBody = req.body;
     var searchName = reqBody.searchName || '';
-    var lowAge = reqBody.lowAge || 0;
-    var maxAge = reqBody.maxAge || 1000;
+    var roleId =parseInt( reqBody.roleId ) || '';
     var pageSize = 10;
     var offSet = 0;
     if (validator.isInt(reqBody.pageSize + '', {min: 1})) {
@@ -198,8 +193,7 @@ function getUserList(req, res, next) {
         offSet = (parseInt(reqBody.currentPage + '') - 1) * pageSize
     }
     var params = {
-        lowAge: lowAge,
-        maxAge: maxAge,
+        roleId: roleId,
         searchName: searchName,
         pageSize: pageSize,
         offSet: offSet

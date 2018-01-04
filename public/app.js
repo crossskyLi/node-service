@@ -40,11 +40,9 @@ var data = {
         userId: 769
     },
     getUserProfile: {
-        userId: 19
+        userId: 760
     },
     getUserList: {
-        lowAge: 1, // 最小年龄
-        maxAge: 60, // 最大年龄
         searchName: '15', // 搜索模糊查询
         pageSize: 10,
         currentPage: 1
@@ -65,16 +63,16 @@ var reqData = {}; // 新增用户
 // url = path.updateUser;
 // reqData = data.updateUser;
 
-//删除用户
-url = path.deleteUser;
-reqData = data.deleteUser;
+// //删除用户
+// url = path.deleteUser;
+// reqData = data.deleteUser;
 
-// 获取用户信息
+// // 获取用户信息
 // url = path.getUserProfile;
 // reqData = data.getUserProfile;
 // 获取用户列表
-// url = path.getUserList;
-// reqData = data.getUserList;
+url = path.getUserList;
+reqData = data.getUserList;
 // 登录
 // url = path.signIn;
 // reqData = data.signIn;
@@ -102,8 +100,8 @@ function request(model) {
 
     });
 }
-request('post');
-// request('get');
+// request('post');
+request('get');
 
 
 
