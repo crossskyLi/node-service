@@ -20,17 +20,24 @@ var data = {
     //添加用户
     addUser: {
         userName: new Date().getTime(),
-        age: '2',
-        password: '123'
+        password: utility.md5('123'),
+        phone: '',
+        email: '',
+        realName: '',
+        roleId: 1,
+        status: 1
     },
     // 更新用户
     updateUser: {
-        userId: 21,
-        age: '123',
-        password: '123'
+        userId: 764,
+        phone: '13692251969',
+        email: '453486140@qq.com',
+        realName: '真实名字',
+        roleId: 1,
+        status: 1
     },
     deleteUser: {
-        userId: 22
+        userId: 764
     },
     getUserProfile: {
         userId: 19
@@ -50,7 +57,7 @@ var data = {
 // 路由
 var url = '';
 var reqData = {}; // 新增用户
-// 新增用户
+// // 新增用户
 // url = path.addUser;
 // reqData = data.addUser;
 
@@ -59,8 +66,8 @@ var reqData = {}; // 新增用户
 // reqData = data.updateUser;
 
 //删除用户
-// url = path.deleteUser;
-// reqData = data.deleteUser;
+url = path.deleteUser;
+reqData = data.deleteUser;
 
 // 获取用户信息
 // url = path.getUserProfile;
@@ -69,8 +76,8 @@ var reqData = {}; // 新增用户
 // url = path.getUserList;
 // reqData = data.getUserList;
 // 登录
-url = path.signIn;
-reqData = data.signIn;
+// url = path.signIn;
+// reqData = data.signIn;
 function request(model) {
     if(model === 'post'){
         app.httpPost(url, reqData, function (chunk, endTip) {

@@ -10,16 +10,26 @@ function addUser(req, res, next) {
     var reqBody = req.body;
     var params = {
         userName: reqBody.userName || '',
-        age: reqBody.age,
-        password: reqBody.password || ''
+        password: reqBody.password || '',
+        phone: reqBody.phone || '',
+        realName: reqBody.realName || '',
+        roleId: reqBody.roleId || 0,
+        email: reqBody.email || '',
+        status: reqBody.status || 0
     };
+    //用户名
     if (!params.userName) {
         res.send(new RetJson(errCode.ERROR, errCode.USERNAME_IS_NULL));
         return;
     }
+    //密码
     if (!params.password || params.password.length < 3) {
         res.send(new RetJson(errCode.ERROR, errCode.PASSWORD_FORMAT_IS_WRONG));
         return;
+    }
+    //角色id验证
+    if (!validator.isInt(params.roleId + '')) {
+        res.send(new RetJson(errCode.ERROR, errCode.ROLEID_IS_WRONG))
     }
 
     function isUserExist(callback) {
@@ -51,11 +61,29 @@ function addUser(req, res, next) {
 
 // 更新用户
 function updateUser(req, res, next) {
-    var params = req.body;
+    var reqBody = req.body;
+    var updateUserData = {
+        userId: reqBody.userId,
+        phone: reqBody.phone,
+        email: reqBody.email,
+        realName: reqBody.realName,
+        roleId: reqBody.roleId,
+        status: reqBody.status || 0
+    };
+
+    if (!validator.isInt(updateUserData.userId + '')) {
+        res.send(new RetJson(errCode.ERROR, errCode.USERID_IS_WRONG));
+        return;
+    }
+
+    if(!validator.isInt(updateUserData.roleId + '') || (parseInt(updateUserData.roleId) < 1) ){
+        res.send(new RetJson(errCode.ERROR, errCode.ROLEID_IS_WRONG));
+        return;
+    }
 
     // 查询用户是否存在
     function isUserExist(callback) {
-        userDao.isUpdateUserExist(params, callback)
+        userDao.isUpdateUserExist(updateUserData, callback)
     }
 
     // 更新用户
@@ -64,11 +92,12 @@ function updateUser(req, res, next) {
             res.send(new RetJson(errCode.ERROR, errCode.LOGIN_USER_NOT_EXIST));
             return;
         }
-        userDao.updateUser(params, callback)
+        userDao.updateUser(updateUserData, callback)
     }
 
     async.waterfall([isUserExist, updateUser], function (err, result) {
         if (err) {
+            console.error(err)
             res.send(new RetJson(errCode.DB_ERROR, errCode.ERROR_MESSAGE));
             return;
         }
@@ -82,8 +111,7 @@ function deleteUser(req, res, next) {
     var params = {
         userId: reqBody.userId
     };
-    var result = {aa: '', bb: ''};
-    console.log(validator.isInt(params.userId + ''))
+
     if (!validator.isInt(params.userId + '')) {
         res.send(new RetJson(errCode.ERROR, errCode.USERID_IS_WRONG));
         return;
@@ -93,7 +121,7 @@ function deleteUser(req, res, next) {
     function isUserExist(callback) {
         userDao.isUpdateUserExist(params, callback)
     }
-
+    // 删除用户
     function deleteUserByUserId(result, callback) {
         if (!result) {
             res.send(new RetJson(errCode.ERROR, errCode.LOGIN_USER_NOT_EXIST));
@@ -179,7 +207,6 @@ function getUserList(req, res, next) {
             res.send(new RetJson(errCode.ERROR, errCode.ERROR_MESSAGE));
             return;
         }
-        console.log('result',result)
         res.send(new RetJson(errCode.SUCCESS, errCode.SUCCESS_MESSAGE, result));
     })
 
