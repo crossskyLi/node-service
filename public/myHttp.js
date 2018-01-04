@@ -49,10 +49,8 @@ function httpPost(path, data,callback) {
 }
 // get
 function httpGet(path, data,callback) {
-
     data = querystring.stringify(data);
     path = path + '?' + data;
-    // console.log('path',path)
     //json转换为字符串
     var options = {
         host: ip,
@@ -60,24 +58,21 @@ function httpGet(path, data,callback) {
         path: path, // 具体路径, 必须以'/'开头, 是相对于host而言的
         method: 'GET', // 请求方式, 这里以post为例
         headers: { // 必选信息, 如果不知道哪些信息是必须的, 建议用抓包工具看一下, 都写上也无妨...
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json;charset=utf-8'
+            // 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+            // 'Content-Length': Buffer.byteLength(data)
         }
     };
     http.get(options, function (res) {
 
         var resData = "";
         res.on("data", function (data) {
+            console.log('-----',data)
             resData += data;
-            callback( data);
-            // console.log('data',data);
         });
-        res.on("end", function (data) {
-            callback( data);
-            // callback(null,JSON.parse(resData));
-            // console.log(resData)
-            // console.log('--',JSON.parse(resData));
-            // console.log('--',resData);
-            // console.log(++i);
+        res.on("end", function (data, result) {
+            resData = JSON.parse(resData)
+            callback( resData);
         });
     });
 }

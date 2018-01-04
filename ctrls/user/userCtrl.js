@@ -152,6 +152,7 @@ function getUserProfile(req, res, next) {
 
 // 获取用户列表
 function getUserList(req, res, next) {
+
     var reqBody = req.body;
     var searchName = reqBody.searchName || '';
     var lowAge = reqBody.lowAge || 0;
@@ -178,6 +179,7 @@ function getUserList(req, res, next) {
             res.send(new RetJson(errCode.ERROR, errCode.ERROR_MESSAGE));
             return;
         }
+        console.log('result',result)
         res.send(new RetJson(errCode.SUCCESS, errCode.SUCCESS_MESSAGE, result));
     })
 

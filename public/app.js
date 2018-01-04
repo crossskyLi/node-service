@@ -58,15 +58,32 @@ var reqData = {}; // 新增用户
 // 获取用户列表
 url = path.getUserList;
 reqData = data.getUserList;
-app.httpPost(url, reqData, function (chunk, endTip) {
+function request(model) {
+    if(model === 'post'){
+        app.httpPost(url, reqData, function (chunk, endTip) {
 
-    if (endTip) {
-        console.log('请求结束', endTip, chunk);
+            if (endTip) {
+                console.log('请求结束', endTip, chunk);
+                return;
+            }
+            console.log('请求结束', chunk);
+
+        });
         return;
     }
-    console.log('请求结束', chunk);
 
-});
+    app.httpGet(url, reqData, function (resData) {
+        if(resData.errcode){
+            console.error(resData.errmsg);
+            return;
+        }
+
+        console.log('请求结束lema', typeof resData,resData.retobj);
+
+    });
+}
+// request('post');
+request('get');
 
 
 
