@@ -76,7 +76,7 @@ function updateUser(req, res, next) {
         return;
     }
 
-    if(!validator.isInt(updateUserData.roleId + '') || (parseInt(updateUserData.roleId) < 1) ){
+    if (!validator.isInt(updateUserData.roleId + '') || (parseInt(updateUserData.roleId) < 1)) {
         res.send(new RetJson(errCode.ERROR, errCode.ROLEID_IS_WRONG));
         return;
     }
@@ -121,6 +121,7 @@ function deleteUser(req, res, next) {
     function isUserExist(callback) {
         userDao.isUpdateUserExist(params, callback)
     }
+
     // 删除用户
     function deleteUserByUserId(result, callback) {
         if (!result) {
@@ -181,9 +182,9 @@ function getUserProfile(req, res, next) {
 // 获取用户列表
 function getUserList(req, res, next) {
 
-    var reqBody = req.body;
+    var reqBody = req.query;
     var searchName = reqBody.searchName || '';
-    var roleId =parseInt( reqBody.roleId ) || '';
+    var roleId = parseInt(reqBody.roleId) || '';
     var pageSize = 10;
     var offSet = 0;
     if (validator.isInt(reqBody.pageSize + '', {min: 1})) {

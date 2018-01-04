@@ -46,6 +46,7 @@ function getUserProfile(params, callback) {
 // 获取用户列表
 function getUserList(params, callback) {
     var sql = $sql.getUserList;
+    console.log('chuanjinglai',params);
     mysqlDao.executeListGroupByForPagination(sql, params, callback);
 }
 
