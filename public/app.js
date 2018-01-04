@@ -1,4 +1,5 @@
 var app = require('./myHttp');
+var utility = require('utility');
 // 路径
 var path = {
     index: '/',
@@ -43,7 +44,7 @@ var data = {
     },
     signIn:{
         userName:'1514354989449',
-        password:'123'
+        password:utility.md5('123')
     }
 };
 // 路由

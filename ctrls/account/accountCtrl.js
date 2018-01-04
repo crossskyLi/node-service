@@ -5,6 +5,7 @@ var accountDao = require('../../dao/account/account_dao'); // 用户数据库操
 var utility = require('utility'); //md5
 var jsonwebtoken = require('jsonwebtoken'); // 生成token
 var paramConfig = require('../../base/param_config'); // 常用数据参数
+var async = require('async'); // 常用数据参数
 function signIn(req, res, next) {
     var reqBody = req.body;
     var param = {
@@ -20,10 +21,29 @@ function signIn(req, res, next) {
     function validatorUser(callback) {
         validatorLoginUserByUserName(req, param, callback);
     }
-
-    validatorUser(function () {
-        console.log('执行完', arguments)
-    });
+    // validatorUser(function (err, result) {
+    //     if(err){
+    //         console.log(err);
+    //         return;
+    //     }
+    //     console.log('result',result)
+    // })
+    function getPermission(callback,result) {
+        var param = {
+            userName :result
+        }
+        accountDao.getPermissionSql (param,callback)
+    }
+    async.auto({
+        task1:validatorUser,
+        task2:['task1',getPermission]
+    },function (err,result) {
+        if(err){
+            console.error(err);
+            return;
+        }
+        console.log(result)
+    })
 }
 
 function validatorLoginUserByUserName(req, param, callback) {
@@ -31,17 +51,17 @@ function validatorLoginUserByUserName(req, param, callback) {
         userName: param.userName,
         status: 1
     };
-    var password = param.password;
     accountDao.getUserByUserNameSql(sqlParam, function (err, userResult) {
         if (err) {
             callback(errCode.DB_ERROR_MESSAGE);
             return
         }
+        //用户不存在
         if (!userResult) {
             callback(errCode.LOGIN_USER_NOT_EXIST)
         }
-        console.log(utility.md5('levis520.'));
-        if (utility.md5(password) !== userResult.password) {
+
+        if (param.password !== userResult.password) {
             callback(errCode.LOGIN_USER_PASSWORD_ERROR)
         }
         var userData = {
@@ -51,7 +71,9 @@ function validatorLoginUserByUserName(req, param, callback) {
         };
         userResult.token = jsonwebtoken.sign(userData, paramConfig.token_secret, {
             expiresIn: paramConfig.token_expires_time
-        })
+        });
+        delete userResult.password;
+        callback(undefined,userResult)
     })
 
 }
