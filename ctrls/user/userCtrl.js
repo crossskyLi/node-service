@@ -137,6 +137,10 @@ function deleteUser(req, res, next) {
             res.send(new RetJson(errCode.ERROR, errCode.ERROR_MESSAGE));
             return;
         }
+        console.log(result instanceof Array)
+        for(var key in result){
+            console.log(key,result[key])
+        }
         res.send(new RetJson(errCode.SUCCESS, errCode.SUCCESS_MESSAGE, result))
     });
 

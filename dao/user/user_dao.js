@@ -29,8 +29,12 @@ function updateUser(params, callback) {
 
 // 删除用户
 function deleteUser(params, callback) {
-    var sql = $sql.deleteUser;
-    mysqlDao.executeObject(sql, params, callback)
+    var deleteUserSql = $sql.deleteUser;
+    var deleteStudentSql = $sql.deleteStudent;
+    var sqlTasks = [];
+    sqlTasks.push({'sql':deleteUserSql,'params':params});
+    sqlTasks.push({'sql':deleteStudentSql,'params':params});
+    mysqlDao.executeByTran(sqlTasks,callback)
 }
 
 // 查询用户信息

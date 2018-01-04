@@ -37,7 +37,7 @@ var data = {
         status: 1
     },
     deleteUser: {
-        userId: 764
+        userId: 769
     },
     getUserProfile: {
         userId: 19
