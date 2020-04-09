@@ -1,5 +1,6 @@
 {
   "name": "my-service",
+  "main": "./bin/www",
   "version": "0.0.0",
   "private": true,
   "scripts": {
