@@ -31,7 +31,7 @@
     "superagent": "^3.8.3",
     "urlencode": "^1.1.0",
     "utility": "^1.5.0",
-    "validator": "^5.5.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "mysql": "^2.15.0"
