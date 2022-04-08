@@ -20,7 +20,7 @@
     "jpush-sdk": "^3.4.6",
     "jsonwebtoken": "^7.4.1",
     "lodash": "^4.17.10",
-    "moment": "^2.22.1",
+    "moment": "^2.29.2",
     "mongoose": "^4.13.13",
     "morgan": "~1.9.0",
     "on-finished": "^2.3.0",
