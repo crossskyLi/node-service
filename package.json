@@ -10,7 +10,7 @@
     "test": "set NODE_ENV=test&&node ./bin/www"
   },
   "dependencies": {
-    "async": "^1.5.0",
+    "async": "^2.6.4",
     "body-parser": "^1.18.3",
     "compression": "^1.7.2",
     "cookie-parser": "~1.4.3",
