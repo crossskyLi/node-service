@@ -15,7 +15,7 @@
     "compression": "^1.7.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "express": "~4.15.5",
+    "express": "~4.17.3",
     "jade": "~1.11.0",
     "jpush-sdk": "^3.4.6",
     "jsonwebtoken": "^7.4.1",
